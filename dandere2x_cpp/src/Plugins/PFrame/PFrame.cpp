@@ -159,10 +159,10 @@ void PFrame::write(std::string output_file) {
     std::ofstream out(output_file + ".temp");
     for (int x = 0; x < blocks.size(); x++) {
         out <<
-            blocks[x].x_start << "\n" <<
-            blocks[x].y_start << "\n" <<
-            blocks[x].x_end << "\n" <<
-            blocks[x].y_end << std::endl;
+              blocks[x].x_start << "\n" <<
+              blocks[x].y_start << "\n" <<
+              blocks[x].x_end   << "\n" <<
+              blocks[x].y_end   << "\n";
     }
     out.close();
 

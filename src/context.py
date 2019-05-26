@@ -21,7 +21,12 @@ import logging
 # cleaning this up in the future ;-;
 class Context:
 
-    def __init__(self, config_file: str):
+    def __init__(self, config_file: str, video2x = False):
+
+        # specific for video2x
+
+
+
         config = configparser.ConfigParser()
         config.read(config_file)
 
@@ -64,6 +69,8 @@ class Context:
 
         if '[this]' in self.model_dir:
             self.model_dir = self.model_dir.replace('[this]', self.this_folder)
+
+
         # linux
         self.dandere_dir = config.get('dandere2x', 'dandere_dir')
 

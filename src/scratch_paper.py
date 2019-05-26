@@ -1,4 +1,5 @@
-import os, os.path
+from video2x.video2x_wrapper import Video2x_Wrapper
 
-DIR = 'C:\\Users\\windwoz\\Desktop\\pythonreleases\\0.7\\demo_folder\\weeb\\inputs\\'
-print(len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))]))
+test = Video2x_Wrapper("config.ini")
+
+print(test.context.block_size)

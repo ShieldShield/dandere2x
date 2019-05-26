@@ -41,7 +41,7 @@ from dandere2x_core.mse_computer import compress_frames
 
 from dandere2x_core.dandere2x_utils import verify_user_settings
 
-from wrappers.dandere2x_cpp import Dandere2xCppWrapper
+from wrappers.dandere2x_cpp import Dandere2xCpp
 from wrappers.ffmpeg import extract_audio as ffmpeg_extract_audio
 from wrappers.ffmpeg import extract_frames as ffmpeg_extract_frames
 from wrappers.waifu2x_caffe import Waifu2xCaffe
@@ -125,7 +125,7 @@ class Dandere2x:
 
         # start all the threads needed for running
         compress_frames_thread = threading.Thread(target=compress_frames, args=(self.context,))
-        dandere2xcpp_thread = Dandere2xCppWrapper(self.context, resume=False)
+        dandere2xcpp_thread = Dandere2xCpp(self.context, resume=False)
         merge_thread = threading.Thread(target=merge_loop, args=(self.context, 1))
         difference_thread = threading.Thread(target=difference_loop, args=(self.context, 1))
         status_thread = threading.Thread(target=print_status, args=(self.context,))
@@ -166,7 +166,7 @@ class Dandere2x:
                                      input_file=self.context.input_frames_dir + "frame1" + self.context.extension_type,
                                      output_file=self.context.merged_dir + "merged_1" + self.context.extension_type)
 
-        dandere2xcpp_thread = Dandere2xCppWrapper(self.context, resume=True)
+        dandere2xcpp_thread = Dandere2xCpp(self.context, resume=True)
         merge_thread = threading.Thread(target=merge_loop_resume, args=(self.context,))
         difference_thread = threading.Thread(target=difference_loop_resume, args=(self.context,))
         status_thread = threading.Thread(target=print_status, args=(self.context,))
@@ -191,7 +191,7 @@ class Dandere2x:
     def difference_only(self):
         self.pre_setup()
 
-        dandere2xcpp_thread = Dandere2xCppWrapper(self.context, resume=False)
+        dandere2xcpp_thread = Dandere2xCpp(self.context, resume=False)
         difference_thread = threading.Thread(target=difference_loop, args=(self.context, 1))
 
         self.context.logger.info("Starting Threaded Processes..")

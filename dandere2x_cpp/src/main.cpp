@@ -7,14 +7,25 @@
  */
 
 
+#include <ctime>
 void benchmark(){
     #include "Image/Image.h"
     #include "Plugins/PFrame/PFrame.h"
 
-    Image f1 = Image("C:\\Users\\windwoz\\Desktop\\pythonreleases\\0.7\\demo_folder\\weeb\\inputs\\frame339.jpg");
-    Image f2 = Image("C:\\Users\\windwoz\\Desktop\\pythonreleases\\0.7\\demo_folder\\weeb\\inputs\\frame340.jpg");
+    Image f1 = Image("C:\\Users\\windwoz\\Desktop\\workspace\\idkchief\\inputs\\frame1.jpg");
+    Image f2 = Image("C:\\Users\\windwoz\\Desktop\\workspace\\idkchief\\inputs\\frame2.jpg");
 
-    std::cout << ImageUtils::mse(f1, f2, 50,50,50,50,30);
+    using namespace std;
+    clock_t begin = clock();
+
+
+    std::cout << ImageUtils::mse_image(f1, f2) << std::endl;
+    //std::cout << ImageUtils::mse(f1, f2, 50,50,50,50,30);
+
+
+    clock_t end = clock();
+    double elapsed_secs = double(end - begin) / CLOCKS_PER_SEC;
+    cout << elapsed_secs << endl;
 
 
 }
@@ -24,7 +35,8 @@ int main(int argc, char **argv) {
 
     bool debug = false; //debug flag
 
-    string workspace = "C:\\Users\\windwoz\\Desktop\\workspace\\shelter_gradfun_higher_sens\\";
+    //"C:\\Users\\windwoz\\Desktop\\workspace\\shelter_gradfun_higher_sens\\";
+    string workspace = "C:/Users/windwoz/Desktop/workspace/shelter_gradfun_higher_sens/";
     int frame_count = 500;
     int block_size = 30;
     int step_size = 4;
@@ -57,6 +69,7 @@ int main(int argc, char **argv) {
 
     if (run_type == "n")
         driver_difference(workspace, 1, frame_count, block_size, step_size, extension_type);
+
     else if (run_type == "r")
         driver_difference(workspace, resume_frame, frame_count, block_size, step_size, extension_type);
 

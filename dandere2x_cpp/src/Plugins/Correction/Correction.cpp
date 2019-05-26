@@ -44,7 +44,7 @@ void Correction::save() {
         out << blocks[x].x_start << "\n" <<
                blocks[x].y_start << "\n" <<
                blocks[x].x_end   << "\n" <<
-               blocks[x].y_end   << std::endl;
+               blocks[x].y_end   << "\n";
     }
     out.close();
     std::rename((this->correction_file + ".temp").c_str(), this->correction_file.c_str());
@@ -56,8 +56,8 @@ void Correction::draw_over() {
         for (int x = 0; x < block_size; x++) {
             for (int y = 0; y < block_size; y++) {
                 image1_predicted->set_color(x + blocks[outer].x_start,
-                                       y + blocks[outer].y_start,
-                                       image1_predicted->get_color(x + blocks[outer].x_end, y + blocks[outer].y_end));
+                                            y + blocks[outer].y_start,
+                                            image1_predicted->get_color(x + blocks[outer].x_end, y + blocks[outer].y_end));
             }
         }
     }

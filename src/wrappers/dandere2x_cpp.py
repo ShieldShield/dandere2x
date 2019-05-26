@@ -12,7 +12,8 @@ import subprocess
 import threading
 from context import Context
 
-class Dandere2xCppWrapper(threading.Thread):
+
+class Dandere2xCpp(threading.Thread):
 
     def __init__(self, context: Context, resume: bool):
         # load stuff from context
